@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="FluffyDiscord\SyliusClassificationBundle\Entity\ProductVariantClassificationValue" table="sylius_classification_variant_value">
+        <unique-constraints>
+            <unique-constraint columns="product_variant_id,classification_value_id" name="sylius_classification_variant_value_uniq"/>
+        </unique-constraints>
+
+        <indexes>
+            <index columns="classification_value_id" name="sylius_classification_variant_value_value_idx"/>
+            <index columns="product_variant_id,classification_id" name="sylius_classification_variant_value_axis_idx"/>
+        </indexes>
+
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="position" column="position" type="integer">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+
+        <many-to-one field="productVariant" target-entity="Sylius\Component\Core\Model\ProductVariantInterface">
+            <join-column name="product_variant_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="classificationValue" target-entity="FluffyDiscord\SyliusClassificationBundle\Entity\ClassificationValueInterface">
+            <join-column name="classification_value_id" referenced-column-name="id" nullable="false" on-delete="NO ACTION"/>
+        </many-to-one>
+
+        <many-to-one field="classification" target-entity="FluffyDiscord\SyliusClassificationBundle\Entity\ClassificationInterface">
+            <join-column name="classification_id" referenced-column-name="id" nullable="false" on-delete="NO ACTION"/>
+        </many-to-one>
+    </mapped-superclass>
+
+</doctrine-mapping>

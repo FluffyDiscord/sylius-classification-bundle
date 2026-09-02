@@ -1,0 +1,23 @@
+sylius_classification:
+    classification:
+        code:
+            unique: Tento kód klasifikace je již použit.
+            not_blank: Zadejte prosím kód klasifikace.
+            max_length: Kód klasifikace nesmí být delší než {{ limit }} znaků.
+            regex: Kód klasifikace může obsahovat pouze písmena, číslice, podtržítka a pomlčky.
+        name:
+            not_blank: Zadejte prosím název klasifikace.
+            max_length: Název klasifikace nesmí být delší než {{ limit }} znaků.
+    classification_value:
+        code:
+            unique: Tento kód hodnoty klasifikace je již použit.
+            not_blank: Kód hodnoty klasifikace se nepodařilo odvodit; zadejte jej prosím.
+            max_length: Kód hodnoty klasifikace nesmí být delší než {{ limit }} znaků.
+            regex: Kód hodnoty klasifikace může obsahovat pouze písmena, číslice, podtržítka a pomlčky.
+        classification:
+            not_null: Vyberte prosím klasifikaci.
+        name:
+            not_blank: Zadejte prosím název hodnoty klasifikace.
+            max_length: Název hodnoty klasifikace nesmí být delší než {{ limit }} znaků.
+    variant_value:
+        single_select: Tato klasifikace povoluje pouze jednu hodnotu na variantu produktu.

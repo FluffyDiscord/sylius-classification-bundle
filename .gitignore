@@ -1,0 +1,15 @@
+/vendor/
+/composer.lock
+/.phpunit.cache/
+/tests/Application/var/
+/tests/Application/public/build/
+/tests/Application/public/bundles/
+/tests/Application/public/media/
+/e2e/node_modules/
+/e2e/package-lock.json
+/e2e/test-results/
+/e2e/playwright-report/
+/.ddev/
+/.env.local
+/.env.*.local
+/.idea/

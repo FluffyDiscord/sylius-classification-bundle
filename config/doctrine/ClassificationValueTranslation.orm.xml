@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="FluffyDiscord\SyliusClassificationBundle\Entity\ClassificationValueTranslation" table="sylius_classification_value_translation">
+        <unique-constraints>
+            <unique-constraint columns="translatable_id,locale" name="sylius_classification_value_translation_uniq_trans"/>
+        </unique-constraints>
+
+        <indexes>
+            <index columns="translatable_id" name="idx_sylius_classification_value_translation"/>
+        </indexes>
+
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" column="name" type="string" length="255"/>
+
+        <many-to-one field="translatable" target-entity="FluffyDiscord\SyliusClassificationBundle\Entity\ClassificationValueInterface" inversed-by="translations">
+            <join-column name="translatable_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
+        </many-to-one>
+    </mapped-superclass>
+
+</doctrine-mapping>

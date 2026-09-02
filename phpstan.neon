@@ -1,0 +1,11 @@
+parameters:
+    level: max
+    paths:
+        - src
+    excludePaths:
+        - src/Migrations/*
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+        -
+            message: '#Trait FluffyDiscord\\SyliusClassificationBundle\\Entity\\Variant\\ClassificationValuesAwareTrait is used zero times and is not analysed\.#'
+            path: src/Entity/Variant/ClassificationValuesAwareTrait.php

@@ -1,0 +1,14 @@
+{% set form = hookable_metadata.context.form %}
+
+<div class="card mb-3" data-loading="addClass(opacity-50)">
+    <div class="card-header">
+        <h2 class="card-title">{{ 'sylius.ui.general'|trans }}</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6 col-12">{{ form_row(form.code) }}</div>
+            <div class="col-md-6 col-12">{{ form_row(form.position) }}</div>
+            <div class="col-12">{{ form_row(form.multiple) }}</div>
+        </div>
+    </div>
+</div>

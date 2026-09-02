@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+>
+    <class name="FluffyDiscord\SyliusClassificationBundle\Entity\ClassificationValue">
+        <attribute name="code">
+            <group>sylius_classification:admin:classification_value:index</group>
+            <group>sylius_classification:admin:classification_value:show</group>
+            <group>sylius_classification:admin:classification_value:create</group>
+            <group>sylius_classification:admin:variant_classification_value:show</group>
+        </attribute>
+        <attribute name="classification">
+            <group>sylius_classification:admin:classification_value:index</group>
+            <group>sylius_classification:admin:classification_value:show</group>
+            <group>sylius_classification:admin:classification_value:create</group>
+        </attribute>
+        <attribute name="name">
+            <group>sylius_classification:admin:classification_value:index</group>
+            <group>sylius_classification:admin:classification_value:show</group>
+            <group>sylius_classification:admin:variant_classification_value:show</group>
+        </attribute>
+        <attribute name="position">
+            <group>sylius_classification:admin:classification_value:index</group>
+            <group>sylius_classification:admin:classification_value:show</group>
+            <group>sylius_classification:admin:classification_value:create</group>
+            <group>sylius_classification:admin:classification_value:update</group>
+        </attribute>
+        <attribute name="config">
+            <group>sylius_classification:admin:classification_value:index</group>
+            <group>sylius_classification:admin:classification_value:show</group>
+            <group>sylius_classification:admin:classification_value:create</group>
+            <group>sylius_classification:admin:classification_value:update</group>
+        </attribute>
+        <attribute name="translations">
+            <group>sylius_classification:admin:classification_value:index</group>
+            <group>sylius_classification:admin:classification_value:show</group>
+            <group>sylius_classification:admin:classification_value:create</group>
+            <group>sylius_classification:admin:classification_value:update</group>
+        </attribute>
+    </class>
+
+    <class name="FluffyDiscord\SyliusClassificationBundle\Entity\ClassificationValueTranslation">
+        <attribute name="locale">
+            <group>sylius_classification:admin:classification_value:index</group>
+            <group>sylius_classification:admin:classification_value:show</group>
+            <group>sylius_classification:admin:classification_value:create</group>
+            <group>sylius_classification:admin:classification_value:update</group>
+        </attribute>
+        <attribute name="name">
+            <group>sylius_classification:admin:classification_value:index</group>
+            <group>sylius_classification:admin:classification_value:show</group>
+            <group>sylius_classification:admin:classification_value:create</group>
+            <group>sylius_classification:admin:classification_value:update</group>
+        </attribute>
+    </class>
+</serializer>

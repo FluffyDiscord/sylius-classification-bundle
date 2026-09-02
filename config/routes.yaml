@@ -1,0 +1,2 @@
+sylius_classification_admin:
+    resource: "@SyliusClassificationBundle/config/routes/admin/*.yaml"

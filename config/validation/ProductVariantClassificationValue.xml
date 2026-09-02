@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+                    https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="FluffyDiscord\SyliusClassificationBundle\Entity\ProductVariantClassificationValue">
+        <constraint name="FluffyDiscord\SyliusClassificationBundle\Validator\SingleSelectCardinality">
+            <option name="groups">
+                <value>sylius</value>
+            </option>
+        </constraint>
+
+        <property name="productVariant">
+            <constraint name="NotNull">
+                <option name="groups">
+                    <value>sylius</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="classificationValue">
+            <constraint name="NotNull">
+                <option name="groups">
+                    <value>sylius</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+
+</constraint-mapping>

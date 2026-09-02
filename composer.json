@@ -1,0 +1,85 @@
+{
+    "name": "fluffydiscord/sylius-classification-bundle",
+    "description": "Translatable, position-ordered classification axes assignable to Sylius product variants, with admin CRUD and an admin API.",
+    "type": "sylius-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "FluffyDiscord",
+            "email": "rostislavkaleta@gmail.com"
+        }
+    ],
+    "keywords": [
+        "sylius",
+        "sylius-plugin",
+        "classification",
+        "product-variant",
+        "taxonomy"
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.4",
+        "api-platform/metadata": "^4.2",
+        "api-platform/state": "^4.2",
+        "doctrine/dbal": "^3.9 || ^4.0",
+        "doctrine/doctrine-bundle": "^2.13",
+        "doctrine/doctrine-migrations-bundle": "^3.4",
+        "doctrine/orm": "^3.3",
+        "sylius/grid-bundle": "^1.16",
+        "sylius/resource-bundle": "^1.14",
+        "sylius/sylius": "^2.2",
+        "sylius/twig-hooks": "^0.9",
+        "symfony/form": "^7.4",
+        "symfony/string": "^7.4",
+        "symfony/ux-autocomplete": "^2.25",
+        "symfony/ux-live-component": "^2.25",
+        "symfony/ux-twig-component": "^2.25",
+        "symfony/validator": "^7.4"
+    },
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "FluffyDiscord\\SyliusClassificationBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FluffyDiscord\\SyliusClassificationBundle\\Tests\\": "tests/",
+            "FluffyDiscord\\SyliusClassificationBundle\\Tests\\Application\\": "tests/Application/src/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "require-dev": {
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "phpunit/phpunit": "^11.5 || ^12.0",
+        "sylius-labs/coding-standard": "^4.4",
+        "sylius/test-application": "^2.2@alpha",
+        "symfony/debug-bundle": "^7.4",
+        "symfony/dotenv": "^7.4",
+        "symfony/error-handler": "^7.4",
+        "symfony/mime": "^7.4",
+        "symfony/runtime": "^7.4",
+        "symfony/twig-bridge": "^7.4",
+        "symfony/type-info": "^7.4",
+        "symfony/var-dumper": "^7.4",
+        "symfony/var-exporter": "^7.4",
+        "symfony/web-link": "^7.4",
+        "symfony/web-profiler-bundle": "^7.4"
+    }
+}

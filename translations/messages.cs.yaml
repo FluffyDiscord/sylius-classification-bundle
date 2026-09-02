@@ -1,0 +1,30 @@
+sylius_classification:
+    ui:
+        classification: Klasifikace
+        classifications: Klasifikace
+        classification_value: Hodnota klasifikace
+        classification_values: Hodnoty klasifikace
+        multiple: Více hodnot
+        single: Jedna hodnota
+        show_values: Zobrazit hodnoty
+        add_type: Přidat typ klasifikace
+        add_type_placeholder: Vyberte typ…
+        search_values: Hledat hodnoty…
+        no_values: Nepřiřazeny žádné hodnoty
+        no_candidates: Žádné odpovídající hodnoty
+        variant_save_first: Nejprve uložte variantu, poté lze přiřadit klasifikace.
+    form:
+        classification:
+            name: Název
+            multiple: Povolit více hodnot na variantu
+            position: Pozice
+        classification_value:
+            name: Název
+            classification: Klasifikace
+            position: Pozice
+            code_help: Ponechte prázdné pro odvození kódu z názvu.
+    menu:
+        admin:
+            main:
+                classification_types: Typy klasifikací
+                classification_values: Hodnoty klasifikací

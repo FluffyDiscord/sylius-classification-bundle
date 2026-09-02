@@ -1,0 +1,21 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.product_variant.create.content.form.side_navigation':
+            classifications:
+                template: '@SyliusClassification/admin/product_variant/form/side_navigation/classifications.html.twig'
+                priority: -100
+
+        'sylius_admin.product_variant.update.content.form.side_navigation':
+            classifications:
+                template: '@SyliusClassification/admin/product_variant/form/side_navigation/classifications.html.twig'
+                priority: -100
+
+        'sylius_admin.product_variant.create.content.form.sections':
+            classifications:
+                template: '@SyliusClassification/admin/product_variant/form/sections/classifications.html.twig'
+                priority: -100
+
+        'sylius_admin.product_variant.update.content.form.sections':
+            classifications:
+                template: '@SyliusClassification/admin/product_variant/form/sections/classifications.html.twig'
+                priority: -100

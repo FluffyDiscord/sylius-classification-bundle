@@ -1,0 +1,16 @@
+sylius_classification_admin_classification_value:
+    resource: |
+        alias: sylius_classification.classification_value
+        section: admin
+        templates: "@SyliusAdmin\\shared\\crud"
+        except: ['show']
+        redirect: update
+        grid: sylius_classification_admin_classification_value
+        form:
+            type: FluffyDiscord\SyliusClassificationBundle\Form\Type\ClassificationValueType
+        permission: true
+        vars:
+            all:
+                hook_prefix: 'sylius_classification.admin.classification_value'
+    type: sylius.resource
+    prefix: /%sylius_admin.path_name%

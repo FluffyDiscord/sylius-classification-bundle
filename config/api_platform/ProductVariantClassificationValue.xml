@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources xmlns="https://api-platform.com/schema/metadata/resources-3.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="https://api-platform.com/schema/metadata/resources-3.0
+           https://api-platform.com/schema/metadata/resources-3.0.xsd">
+
+    <resource class="%sylius_classification.model.product_variant_classification_value.class%" shortName="ProductVariantClassificationValue">
+        <operations>
+            <operation class="ApiPlatform\Metadata\Post" uriTemplate="/admin/variant-classification-values"
+                       processor="FluffyDiscord\SyliusClassificationBundle\State\AssignClassificationValueProcessor">
+                <normalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>sylius_classification:admin:variant_classification_value:show</value>
+                            </values>
+                        </value>
+                    </values>
+                </normalizationContext>
+                <denormalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>sylius_classification:admin:variant_classification_value:create</value>
+                            </values>
+                        </value>
+                    </values>
+                </denormalizationContext>
+                <validationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>sylius</value>
+                            </values>
+                        </value>
+                    </values>
+                </validationContext>
+            </operation>
+
+            <operation class="ApiPlatform\Metadata\Get" uriTemplate="/admin/variant-classification-values/{id}">
+                <normalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>sylius_classification:admin:variant_classification_value:show</value>
+                            </values>
+                        </value>
+                    </values>
+                </normalizationContext>
+            </operation>
+
+            <operation class="ApiPlatform\Metadata\Delete" uriTemplate="/admin/variant-classification-values/{id}"/>
+
+            <operation class="ApiPlatform\Metadata\GetCollection"
+                       uriTemplate="/admin/product-variants/{code}/classification-values"
+                       provider="FluffyDiscord\SyliusClassificationBundle\State\VariantClassificationValuesProvider">
+                <uriVariables>
+                    <uriVariable parameterName="code"
+                                 fromClass="%sylius.model.product_variant.class%"
+                                 toProperty="productVariant"/>
+                </uriVariables>
+                <normalizationContext>
+                    <values>
+                        <value name="groups">
+                            <values>
+                                <value>sylius_classification:admin:variant_classification_value:show</value>
+                            </values>
+                        </value>
+                    </values>
+                </normalizationContext>
+            </operation>
+        </operations>
+    </resource>
+
+</resources>

@@ -1,0 +1,33 @@
+<div{{ attributes }}>
+    {% if not this.persisted %}
+        <p class="text-muted mb-0">{{ 'sylius_classification.ui.variant_save_first'|trans }}</p>
+    {% else %}
+        {% set addableTypes = this.addableTypes %}
+        {% if addableTypes is not empty %}
+            <div class="mb-3" data-live-ignore>
+                <label class="form-label">{{ 'sylius_classification.ui.add_type'|trans }}</label>
+                <select
+                    class="form-select"
+                    data-controller="symfony--ux-autocomplete--autocomplete"
+                    data-model="norender|selectedTypeToAdd"
+                    data-action="change->live#action"
+                    data-live-action-param="addSelectedType"
+                    {{ sylius_test_html_attribute('classification-add-type') }}
+                >
+                    <option value="">{{ 'sylius_classification.ui.add_type_placeholder'|trans }}</option>
+                    {% for type in addableTypes %}
+                        <option value="{{ type.code }}">{{ type.label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        {% endif %}
+
+        {% for code in this.shownTypeCodes %}
+            {{ component('sylius_classification:admin:variant_classification_row', {
+                variantId: this.variantId,
+                classificationCode: code,
+                key: 'classification-row-' ~ code,
+            }) }}
+        {% endfor %}
+    {% endif %}
+</div>

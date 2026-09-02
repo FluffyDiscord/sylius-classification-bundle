@@ -1,0 +1,30 @@
+sylius_classification:
+    ui:
+        classification: Classification
+        classifications: Classifications
+        classification_value: Classification value
+        classification_values: Classification values
+        multiple: Multiple
+        single: Single
+        show_values: Show values
+        add_type: Add a classification type
+        add_type_placeholder: Choose a type…
+        search_values: Search values…
+        no_values: No values assigned
+        no_candidates: No matching values
+        variant_save_first: Save the variant first to assign classifications.
+    form:
+        classification:
+            name: Name
+            multiple: Allow multiple values per variant
+            position: Position
+        classification_value:
+            name: Name
+            classification: Classification
+            position: Position
+            code_help: Leave blank to derive the code from the name.
+    menu:
+        admin:
+            main:
+                classification_types: Classification types
+                classification_values: Classification values

@@ -1,0 +1,56 @@
+<div{{ attributes.defaults({ class: 'card mb-2' }) }} {{ sylius_test_html_attribute('classification-row', this.classificationCode) }}>
+    <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+            <strong>{{ this.label }}</strong>
+            <span class="badge bg-secondary-lt">
+                {{ (this.multiple ? 'sylius_classification.ui.multiple' : 'sylius_classification.ui.single')|trans }}
+            </span>
+        </div>
+
+        <div class="mb-2 d-flex flex-wrap gap-1">
+            {% for value in this.values %}
+                <span class="badge bg-blue-lt d-inline-flex align-items-center gap-1">
+                    {{ value.label }}
+                    <button
+                        type="button"
+                        class="btn-close btn-close-sm"
+                        data-action="live#action"
+                        data-live-action-param="removeValue"
+                        data-live-value-code-param="{{ value.code }}"
+                        {{ sylius_test_html_attribute('classification-remove-value', value.code) }}
+                    ></button>
+                </span>
+            {% else %}
+                <span class="text-muted small">{{ 'sylius_classification.ui.no_values'|trans }}</span>
+            {% endfor %}
+        </div>
+
+        <input
+            type="text"
+            class="form-control"
+            placeholder="{{ 'sylius_classification.ui.search_values'|trans }}"
+            data-model="debounce(300)|search"
+            {{ sylius_test_html_attribute('classification-search', this.classificationCode) }}
+        >
+
+        {% set candidates = this.candidates %}
+        {% if candidates is not empty %}
+            <div class="list-group mt-1">
+                {% for candidate in candidates %}
+                    <button
+                        type="button"
+                        class="list-group-item list-group-item-action"
+                        data-action="live#action"
+                        data-live-action-param="addValue"
+                        data-live-value-id-param="{{ candidate.id }}"
+                        {{ sylius_test_html_attribute('classification-candidate', candidate.id) }}
+                    >
+                        {{ candidate.label }}
+                    </button>
+                {% endfor %}
+            </div>
+        {% elseif this.search|trim is not empty %}
+            <div class="text-muted small mt-1">{{ 'sylius_classification.ui.no_candidates'|trans }}</div>
+        {% endif %}
+    </div>
+</div>

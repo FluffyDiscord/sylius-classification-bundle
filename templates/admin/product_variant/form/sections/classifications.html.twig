@@ -1,0 +1,19 @@
+{% set form = hookable_metadata.context.form|default(null) %}
+
+{% if form is not null %}
+    {% set variant = form.vars.data %}
+
+    <div class="tab-pane" id="product-variant-classifications" role="tabpanel" tabindex="0">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h2 class="card-title">{{ 'sylius_classification.ui.classifications'|trans }}</h2>
+            </div>
+            <div class="card-body">
+                {{ component('sylius_classification:admin:variant_classifications', {
+                    variant: variant,
+                    key: 'variant-classifications',
+                }) }}
+            </div>
+        </div>
+    </div>
+{% endif %}
