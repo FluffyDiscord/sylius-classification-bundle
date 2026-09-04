@@ -32,7 +32,7 @@
             </operation>
 
             <operation class="ApiPlatform\Metadata\Post" uriTemplate="/admin/classification-values"
-                       processor="FluffyDiscord\SyliusClassificationBundle\State\ClassificationUniqueCodeProcessor">
+                       processor="sylius_classification.state.unique_code">
                 <normalizationContext>
                     <values>
                         <value name="groups">

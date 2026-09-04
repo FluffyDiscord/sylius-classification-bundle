@@ -8,7 +8,7 @@
     <resource class="%sylius_classification.model.product_variant_classification_value.class%" shortName="ProductVariantClassificationValue">
         <operations>
             <operation class="ApiPlatform\Metadata\Post" uriTemplate="/admin/variant-classification-values"
-                       processor="FluffyDiscord\SyliusClassificationBundle\State\AssignClassificationValueProcessor">
+                       processor="sylius_classification.state.assign_classification_value">
                 <normalizationContext>
                     <values>
                         <value name="groups">
@@ -54,11 +54,11 @@
 
             <operation class="ApiPlatform\Metadata\GetCollection"
                        uriTemplate="/admin/product-variants/{code}/classification-values"
-                       provider="FluffyDiscord\SyliusClassificationBundle\State\VariantClassificationValuesProvider">
+                       provider="sylius_classification.state.variant_classification_values">
                 <uriVariables>
                     <uriVariable parameterName="code"
                                  fromClass="%sylius.model.product_variant.class%"
-                                 toProperty="productVariant"/>
+                                 fromProperty="classificationValues"/>
                 </uriVariables>
                 <normalizationContext>
                     <values>
