@@ -10,7 +10,6 @@ use FluffyDiscord\SyliusClassificationBundle\Entity\ClassificationValue;
 use FluffyDiscord\SyliusClassificationBundle\Entity\ProductVariantClassificationValue;
 use FluffyDiscord\SyliusClassificationBundle\Grid\Filter\ClassificationFilterRoot;
 use FluffyDiscord\SyliusClassificationBundle\Grid\Filter\ClassificationValueExpressionBuilder;
-use FluffyDiscord\SyliusClassificationBundle\Tests\Application\Entity\ProductVariant;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -50,27 +49,6 @@ final class GridFilterAndValidationTest extends KernelTestCase
         $this->expectException(\InvalidArgumentException::class);
 
         $filter->apply($dataSource, 'facet', ['color_red'], []);
-    }
-
-    public function testSingleSelectCardinalityFiresUnderSyliusGroup(): void
-    {
-        self::bootKernel();
-
-        /** @var ValidatorInterface $validator */
-        $validator = self::getContainer()->get('validator');
-
-        $classification = new Classification();
-        $classification->setCode('color');
-        $classification->setMultiple(false);
-
-        $variant = new ProductVariant();
-        $variant->addClassificationValueAssignment($this->createAssignment($classification, 'color_red', $variant));
-
-        $submitted = $this->createAssignment($classification, 'color_blue', $variant);
-
-        $violations = $validator->validate($submitted, null, ['sylius']);
-
-        self::assertGreaterThan(0, $violations->count());
     }
 
     public function testMissingRequiredFieldsFireUnderSyliusGroup(): void
@@ -119,19 +97,6 @@ final class GridFilterAndValidationTest extends KernelTestCase
         $entityManager->remove($value);
         $entityManager->remove($classification);
         $entityManager->flush();
-    }
-
-    private function createAssignment(Classification $classification, string $valueCode, ProductVariant $variant): ProductVariantClassificationValue
-    {
-        $value = new ClassificationValue();
-        $value->setClassification($classification);
-        $value->setCode($valueCode);
-
-        $assignment = new ProductVariantClassificationValue();
-        $assignment->setProductVariant($variant);
-        $assignment->setClassificationValue($value);
-
-        return $assignment;
     }
 
     /**

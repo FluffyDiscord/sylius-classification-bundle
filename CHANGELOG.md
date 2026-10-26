@@ -3,6 +3,15 @@
 All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); the project adheres to Semantic Versioning.
 
+## [1.1.0]
+
+### Added
+
+- Support for Sylius 2.3 and Symfony UX 3. The bundle installs on Sylius `^2.2` with
+  `sylius/twig-hooks` `^0.9 || ^0.12 || ^0.14`, Symfony UX (`ux-autocomplete`, `ux-live-component`,
+  `ux-twig-component`) `^2.25 || ^3.0` and API Platform (`metadata`, `state`) `^4.2 || ^5.0`. Sylius 2.2
+  with UX 2 keeps working unchanged.
+
 ## [1.0.1]
 
 ### Fixed
