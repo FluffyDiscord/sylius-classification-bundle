@@ -147,16 +147,18 @@ sylius_classification:
 - **Services** — every replaceable service is aliased by its interface (`ClassificationValueCodeDeriverInterface`,
   `ClassificationLabelResolverInterface`, `AssignedClassificationValueProviderInterface`,
   `RenderableClassificationProviderInterface`); decorate or re-alias to replace.
+- **Admin grids** — `sylius_classification_admin_classification[_value]` are PHP grids; change them with
+  `#[AsGridMutator(grid: '…')]`. A same-named `sylius_grid.grids` YAML entry replaces the whole grid.
 - **Templates & layout** — override the plugin's Twig via your theme, or repoint the twig-hook keys under the
   `sylius_classification.admin.classification[_value]` prefixes.
 
 ### Container autoconfiguration
 
-The plugin relies on attribute autoconfiguration for its grid filter (`#[AsFilter]`), its two admin Live
-Components (`#[AsLiveComponent]`), its autocomplete field (`#[AsEntityAutocompleteField]`) and its Doctrine
-mapping subscriber (`#[AsDoctrineListener]`). If you disable autoconfiguration for third-party bundles, tag these
-services by hand (`sylius.grid_filter`, `container.service_subscriber` / the UX Live Component tags,
-`doctrine.event_listener`).
+The plugin relies on attribute autoconfiguration for its two admin grids (`#[AsGrid]`), its grid filter
+(`#[AsFilter]`), its two admin Live Components (`#[AsLiveComponent]`), its autocomplete field
+(`#[AsEntityAutocompleteField]`) and its Doctrine mapping subscriber (`#[AsDoctrineListener]`). If you disable
+autoconfiguration for third-party bundles, tag these services by hand (`sylius.invokable_grid`,
+`sylius.grid_filter`, `container.service_subscriber` / the UX Live Component tags, `doctrine.event_listener`).
 
 ## Database platforms
 

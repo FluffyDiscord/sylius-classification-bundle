@@ -44,7 +44,6 @@ class SyliusClassificationExtension extends AbstractResourceExtension implements
         $this->registerResources($this->getAlias(), 'doctrine/orm', $config['resources'], $container);
         $this->prependDoctrineMigrations($container);
         $this->prependApiPlatformMapping($container);
-        $this->prependConfigurationFiles($container, 'sylius_grid', $this->getConfigDirectory() . '/grids');
         $this->prependConfigurationFiles($container, 'sylius_twig_hooks', $this->getConfigDirectory() . '/twig_hooks');
     }
 

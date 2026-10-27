@@ -8,6 +8,8 @@ use FluffyDiscord\SyliusClassificationBundle\Form\Type\ClassificationType;
 use FluffyDiscord\SyliusClassificationBundle\Form\Type\ClassificationValueAutocompleteType;
 use FluffyDiscord\SyliusClassificationBundle\Form\Type\ClassificationValueTranslationType;
 use FluffyDiscord\SyliusClassificationBundle\Form\Type\ClassificationValueType;
+use FluffyDiscord\SyliusClassificationBundle\Grid\ClassificationGrid;
+use FluffyDiscord\SyliusClassificationBundle\Grid\ClassificationValueGrid;
 use FluffyDiscord\SyliusClassificationBundle\Grid\Filter\ClassificationValueExpressionBuilder;
 use FluffyDiscord\SyliusClassificationBundle\Grid\Filter\ProductClassificationFilter;
 use FluffyDiscord\SyliusClassificationBundle\Menu\AdminMenuListener;
@@ -132,6 +134,19 @@ return static function (Symfony\Component\DependencyInjection\Loader\Configurato
     $services
         ->set('sylius_classification.grid.filter.classification_value', ProductClassificationFilter::class)
         ->args([service(ClassificationValueExpressionBuilder::class)])
+    ;
+
+    $services
+        ->set('sylius_classification.grid.admin_classification', ClassificationGrid::class)
+        ->args([param('sylius_classification.model.classification.class')])
+    ;
+
+    $services
+        ->set('sylius_classification.grid.admin_classification_value', ClassificationValueGrid::class)
+        ->args([
+            param('sylius_classification.model.classification_value.class'),
+            param('sylius_classification.model.classification.class'),
+        ])
     ;
 
     $services

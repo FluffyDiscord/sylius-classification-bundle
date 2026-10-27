@@ -62,6 +62,7 @@ src/
              ClassificationValueTranslationType,ClassificationValueAutocompleteType}.php
   Twig/Component/Admin/{ClassificationFormComponent,ClassificationValueFormComponent,
                         VariantClassificationsComponent,VariantClassificationValueRowComponent}.php
+  Grid/{ClassificationGrid,ClassificationValueGrid}.php
   Grid/Filter/{ProductClassificationFilter,ClassificationValueExpressionBuilder,ClassificationFilterRoot}.php
   Validator/{SingleSelectCardinality,SingleSelectCardinalityValidator}.php
   State/{AssignClassificationValueProcessor,ClassificationUniqueCodeProcessor,
@@ -75,7 +76,6 @@ config/
   api_platform/{Classification,ClassificationValue,ProductVariantClassificationValue}.xml
   validation/{Classification,ClassificationTranslation,ClassificationValue,
               ClassificationValueTranslation,ProductVariantClassificationValue}.xml
-  grids/admin/{classification,classification_value}.yaml
   routes/admin/{classification,classification_value}.yaml
   twig_hooks/admin/{classification,classification_value,product_variant}/*.yaml
 templates/admin/{classification,classification_value,product_variant}/…
@@ -160,7 +160,7 @@ Implementing the interface is the single host entity step, required **only** for
 
 ## 5. Services & extension points
 
-`config/services.php` (PHP DSL, matching `sylius-sklik-sem-plugin`). `defaults()` sets `autowire(false)->autoconfigure(true)`: every service is wired explicitly, but **autoconfiguration must stay on** — `#[AsFilter]` (tag `sylius.grid_filter`), `#[AsLiveComponent]`, `#[AsEntityAutocompleteField]` and `#[AsDoctrineListener]` are the only registration for the grid filter, the two admin Live Components, the autocomplete endpoint and the mapping subscriber. The README lists those four tags for a host that disables autoconfiguration.
+`config/services.php` (PHP DSL, matching `sylius-sklik-sem-plugin`). `defaults()` sets `autowire(false)->autoconfigure(true)`: every service is wired explicitly, but **autoconfiguration must stay on** — `#[AsGrid]` (tag `sylius.invokable_grid`), `#[AsFilter]` (tag `sylius.grid_filter`), `#[AsLiveComponent]`, `#[AsEntityAutocompleteField]` and `#[AsDoctrineListener]` are the only registration for the two admin grids, the grid filter, the two admin Live Components, the autocomplete endpoint and the mapping subscriber. The README lists those five tags for a host that disables autoconfiguration.
 
 Every replaceable service is aliased by its interface so a host can `#[AsDecorator]` or re-alias it.
 
@@ -242,9 +242,9 @@ The host imports `@SyliusClassificationBundle/config/routes.yaml`; a bundle cann
 
 `hook_prefix: sylius_classification.admin.classification` and `…classification_value`. Hook configs live in `config/twig_hooks/admin/**`, imported by `config/config.yaml`. Structure mirrors the extracted hooks: `<prefix>.{create,update}.content` → the Live Component; `.content.form` → sections template; `.content.form.sections` → `general` (priority 200) + `translations` (priority 100).
 
-### 7.3 Grids — `config/grids/admin/*.yaml`
+### 7.3 Grids — `src/Grid/*.php`
 
-`class: "%sylius_classification.model.<name>.class%"` (never an FQCN).
+Invokable `#[AsGrid(name: …)]` classes. The model classes arrive as constructor arguments from `%sylius_classification.model.<name>.class%` in `config/services.php` (never an FQCN); the driver `class` option and the entity filter's `class` form option read them. Hosts customise them with `#[AsGridMutator(grid: '<grid name>')]`; a host `sylius_grid.grids.<grid name>` YAML entry is not merged — with Sylius core's default `sylius_core.grid.use_legacy_config: true` it replaces the whole grid.
 
 `sylius_classification_admin_classification`: sorting `position: asc`; fields `position`, `code`, `name` (`type: string`, §5.3), `multiple` (twig boolean template); filter `search` (contains, on `code`); item action `show_values` (`type: show`, icon `tabler:list-details`) — a single squared `btn btn-icon` (the `show` action template, not the `links` dropdown) linking to the value grid pre-filtered to this axis: `options.link.route: sylius_classification_admin_classification_value_index` with `parameters: {'criteria[classification]': resource.id}`, which the value grid's `classification` entity filter reads as `classification.id = <id>`; then create / update / delete / bulk delete.
 
@@ -343,7 +343,7 @@ State classes:
 
 | Option | Type | Default | Meaning |
 |---|---|---|---|
-| `classification_code` | string | none — must be set in the grid YAML | axis to filter on. Grid filters receive a raw options array with no `OptionsResolver`, so `apply()` enforces it: missing or blank throws `\InvalidArgumentException`, rather than silently returning every row |
+| `classification_code` | string | none — must be set in the grid definition | axis to filter on. Grid filters receive a raw options array with no `OptionsResolver`, so `apply()` enforces it: missing or blank throws `\InvalidArgumentException`, rather than silently returning every row |
 | `root` | `ClassificationFilterRoot` enum (`product`, `product_variant`) | `product` | the grid's root entity |
 | `enabled_variants_only` | bool | `true` | restrict matching to enabled variants |
 

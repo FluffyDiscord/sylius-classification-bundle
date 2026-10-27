@@ -3,6 +3,18 @@
 All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); the project adheres to Semantic Versioning.
 
+## [1.2.0]
+
+### Changed
+
+- The admin grids are PHP grid classes (`#[AsGrid]`) instead of YAML, so sylius/grid-bundle 1.16 no
+  longer logs the legacy grid config deprecation. Grid names, fields, sorting, filters and actions are
+  unchanged.
+- Customising the grids: use a grid mutator (`#[AsGridMutator(grid: 'sylius_classification_admin_classification')]`).
+  A `sylius_grid.grids.<grid name>` entry in your YAML is no longer merged into the bundle's grid: with
+  Sylius core's default `sylius_core.grid.use_legacy_config: true` it replaces the whole grid, so a
+  partial override must become a mutator or a full grid definition.
+
 ## [1.1.0]
 
 ### Added
